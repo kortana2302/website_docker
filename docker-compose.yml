@@ -1,15 +1,17 @@
 version: '3.7'
 services:
- service:
-   context: .
-   dockerfile: service/Dockerfile
-  ports:
-   - "8080:8080"
- security:
-   context: .
-   dockerfile: security/Dockerfile
-  environment:
-   SECURITY_SERVICE_URL: http://security-service:8080
-   API_KEY: 12345
-  depends_on:
-   - service
+  service:
+    build:
+      context: .
+      dockerfile: service/Dockerfile
+    ports:
+      - "8080:8080"
+  security:
+    build:
+      context: .
+      dockerfile: security/Dockerfile
+    environment:
+      SECURITY_SERVICE_URL: http://security-service:8080
+      API_KEY: 12345
+    depends_on:
+     - service
