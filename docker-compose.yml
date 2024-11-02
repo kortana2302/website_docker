@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+ service:
+  build: .
+  ports:
+   - "8080:8080"
+ security:
+  build: .
+  environment:
+   SECURITY_SERVICE_URL: http://security-service:8080
+   API_KEY: 12345
+  depends_on:
+   - service
